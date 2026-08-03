@@ -1,6 +1,6 @@
 export const SITE_TITLE = "The Ashen One";
 export const SITE_DESCRIPTION =
-  `Zero, is a place that i would tell about myself and my stories or things that are intersting for me`.trim();
+  `The Ashen One, is a place that i would tell about myself and my stories or things that are intersting for me`.trim();
 
 export const KNOWN_TECH =
   `Python,CSS,HTML,Photoshop,Basket,I don't know,Dark souls,E=mc^2,Cats,Farhad Mehrad,Sherlock, Mr. Bean, Albert Einstein, Mr.Robot,Poker,Sleep`.split(
