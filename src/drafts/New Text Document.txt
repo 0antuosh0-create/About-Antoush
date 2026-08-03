@@ -1,0 +1,8 @@
+# ۱. اضافه کردن تمام تغییرات
+git add .
+
+# ۲. ثبت تغییرات با یک پیام
+git commit -m "Customize personal blog layout and footer"
+
+# ۳. آپلود کدها روی گیت‌هاب
+git push origin main
