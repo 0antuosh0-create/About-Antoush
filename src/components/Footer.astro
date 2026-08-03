@@ -42,12 +42,18 @@ const quotes = [
   </div>
 </section>
 
-<script data-quotes={JSON.stringify(quotes)}>
-  const card = document.getElementById("footer-card");
-  const textEl = document.getElementById("footer-text");
-  const scriptTag = document.querySelector("script[data-quotes]");
-  
-  if (scriptTag && card && textEl) {
+<script is:inline data-quotes={JSON.stringify(quotes)}>
+  function setupFooterAnimation() {
+    const card = document.getElementById("footer-card");
+    const textEl = document.getElementById("footer-text");
+    const scriptTag = document.querySelector("script[data-quotes]");
+
+    if (!scriptTag || !card || !textEl) return;
+
+    // جلوگیری از ثبت چندباره Event Listener موقع رفتن به صفحات دیگر
+    if (card.dataset.hasListener === "true") return;
+    card.dataset.hasListener = "true";
+
     const quotes = JSON.parse(scriptTag.dataset.quotes || "[]");
     let currentIndex = 0;
     let isAnimating = false;
@@ -75,4 +81,8 @@ const quotes = [
       }, 200);
     });
   }
+
+  // اجرای انیمیشن در اولین بارگذاری و تمام جابه‌جایی‌های صفحات در Astro
+  document.addEventListener("DOMContentLoaded", setupFooterAnimation);
+  document.addEventListener("astro:page-load", setupFooterAnimation);
 </script>
