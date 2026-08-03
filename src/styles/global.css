@@ -1,4 +1,12 @@
 @font-face {
+  font-family: 'SorenaPixel';
+  src: url('/fonts/Sorena-Pixel.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "VCR";
   src: url("/fonts/VCRosdNEUE.ttf") format("truetype");
   font-style: normal;
