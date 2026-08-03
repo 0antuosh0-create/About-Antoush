@@ -1,8 +1,8 @@
-# ۱. اضافه کردن تمام تغییرات
+# ۱. شناسایی تمام تغییرات جدید
 git add .
 
-# ۲. ثبت تغییرات با یک پیام
-git commit -m "Customize personal blog layout and footer"
+# ۲. ذخیره تغییرات با یک پیام کوتاه
+git commit -m "Update blog posts and design"
 
-# ۳. آپلود کدها روی گیت‌هاب
+# ۳. فرستادن کدها به گیت‌هاب
 git push origin main
