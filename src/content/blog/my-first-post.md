@@ -2,7 +2,7 @@
 title: "And The Game is ON"
 description: "Hi For The First Time"
 pubDate: "2026-08-03"
-heroImage: "/1st.png"
+heroImage: "/About-Antoush/1st.png"
 ---
 <div class="max-w-2xl mx-auto">
 
