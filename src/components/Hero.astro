@@ -6,22 +6,26 @@ import { QUOTE, SITE_TITLE } from "@/consts";
 
 <div class="hero-bg hidden md:block h-screen hero-bg-animate absolute top-0"></div>
 <section
-  class="h-screen !z-[20] relative w-full grid grid-cols-1 grid-rows-1 sm:grid-cols-2 md:grid-cols-2 gap-4 items-center"
+  class="min-h-screen md:h-screen !z-[20] relative w-full grid grid-cols-1 sm:grid-cols-2 gap-6 items-center px-4 sm:px-8 py-12 md:py-0 overflow-x-hidden"
   id="hero"
 >
   <div class="grid place-items-center">
-    <div class="text-center -mt-10">
-      <h1 class="font-bold text-7xl">{`<${SITE_TITLE} />`}</h1>
-      <h2 class="text-2xl opacity-95">
+    <div class="text-center md:-mt-10 max-w-full">
+      <!-- سایز فونت متناسب با صفحه نمایش -->
+      <h1 class="font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight break-words">
+        {`<${SITE_TITLE} />`}
+      </h1>
+      <!-- نقل قول متناسب با موبایل -->
+      <h2 class="text-sm sm:text-xl md:text-2xl opacity-95 mt-3 leading-relaxed">
         {QUOTE}
       </h2>
     </div>
   </div>
-  <div>
+  <div class="flex justify-center">
     <Image
       alt="Hero"
       src={HeroImg}
-      class="brightness-200 w-full scale-90 invert"
+      class="brightness-200 w-full max-w-[280px] sm:max-w-full scale-90 invert"
     />
   </div>
 </section>
@@ -34,6 +38,6 @@ import { QUOTE, SITE_TITLE } from "@/consts";
     for (let i = 0; i < 1000; i++) {
       binaryText += Math.floor(Math.random() * 2).toString();
     }
-    hero_bg.textContent = binaryText;
+    if (hero_bg) hero_bg.textContent = binaryText;
   }, 300);
 </script>
