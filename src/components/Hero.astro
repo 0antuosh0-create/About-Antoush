@@ -6,28 +6,28 @@ import { QUOTE, SITE_TITLE } from "@/consts";
 
 <div class="hero-bg hidden md:block h-screen hero-bg-animate absolute top-0"></div>
 <section
-  class="min-h-screen md:h-screen !z-[20] relative w-full grid grid-cols-1 sm:grid-cols-2 gap-8 items-center px-4 sm:px-8 pt-20 pb-12 md:py-0 overflow-x-hidden"
+  class="min-h-screen md:h-screen !z-[20] relative w-full flex flex-col justify-center sm:grid sm:grid-cols-2 gap-6 items-center px-4 sm:px-8 pt-16 pb-8 md:py-0 overflow-x-hidden"
   id="hero"
 >
-  <div class="grid place-items-center">
+  <div class="grid place-items-center w-full">
     <div class="text-center md:-mt-10 max-w-full">
-      <!-- تیتر بزرگ‌تر و پرقدرت‌تر برای موبایل -->
-      <h1 class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight">
+      <!-- تیتر با فونت متناسب و خوانا -->
+      <h1 class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight break-words">
         {`<${SITE_TITLE} />`}
       </h1>
-      <!-- نقل قول با فونت و فاصله بهتر -->
-      <h2 class="text-base sm:text-xl md:text-2xl text-white/80 mt-4 leading-relaxed font-light px-2">
+      <!-- نقل قول با استایل حماسی و فاصله عبارات -->
+      <h2 class="text-sm sm:text-xl md:text-2xl text-white/80 mt-3 leading-relaxed font-light tracking-wide px-2">
         {QUOTE}
       </h2>
     </div>
   </div>
-  
-  <div class="flex justify-center items-center">
-    <!-- عکس هیرو با سایز متناسب و افکت درخشش ملایم -->
+
+  <div class="flex justify-center items-center w-full mt-2 sm:mt-0">
+    <!-- عکس جدی، بزرگ‌تر و دارای سایه درخشان -->
     <Image
       alt="Hero"
       src={HeroImg}
-      class="brightness-200 w-3/4 max-w-[260px] sm:max-w-full scale-95 md:scale-90 invert drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+      class="brightness-200 w-[85%] max-w-[340px] sm:max-w-full scale-100 md:scale-90 invert drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300"
     />
   </div>
 </section>
