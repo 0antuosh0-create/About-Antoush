@@ -1,79 +1,64 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import BaseHead from "@/components/BaseHead.astro";
-import Navbar from "@/components/Navbar.astro";
-import Footer from "@/components/Footer.astro";
-import DateComponent from "@/components/Date.astro";
+type Props = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  date: Date;
+};
 
-type Props = CollectionEntry<"blog">["data"];
+const { title, slug, excerpt, date } = Astro.props;
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
-
-// ۱. دریافت Base URL بدون اسلش پایانی
+// اضافه شدن Base URL بدون تغییر در هیچ بخشی از UI
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
-
-// ۲. اصلاح خودکار آدرس عکس کاور پست برای جلوگیری از ارور روتر و ۴۰۴
-let formattedHeroImage = heroImage;
-if (heroImage && !heroImage.startsWith("http") && !heroImage.startsWith(baseUrl)) {
-  const cleanPath = heroImage.startsWith("/") ? heroImage : `/${heroImage}`;
-  formattedHeroImage = `${baseUrl}${cleanPath}`;
-}
+const cleanSlug = slug.replace(/^\//, "");
 ---
 
-<html lang="en" class="bg-black text-white">
-  <head>
-    <BaseHead title={title} description={description} image={formattedHeroImage} />
-  </head>
+<div
+  class="w-full mx-auto bg-gradient-to-br relative pb-5 from-white/[0.001] to-white/[0.01] border-2 border-white rounded-lg overflow-hidden"
+>
+  <div class="flex items-center justify-start px-4 py-2 bg-white/95">
+    <div class="flex space-x-2">
+      <div class="w-3 h-3 rounded-full bg-black"></div>
+      <div class="w-3 h-3 rounded-full bg-black"></div>
+      <div class="w-3 h-3 rounded-full bg-black"></div>
+    </div>
+  </div>
 
-  <body class="bg-black text-white min-h-screen flex flex-col justify-between selection:bg-white selection:text-black">
-    <Navbar />
-
-    <main class="w-full max-w-4xl mx-auto px-4 py-10 flex-1">
-      <article class="prose prose-invert max-w-none">
-        {
-          formattedHeroImage && (
-            <div class="mb-8 overflow-hidden rounded-lg border-2 border-white/20">
-              <img
-                src={formattedHeroImage}
-                alt={title}
-                class="w-full h-auto object-cover max-h-[450px]"
-              />
-            </div>
-          )
-        }
-
-        <div class="mb-8 border-b border-white/10 pb-6">
-          <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">
-            {title}
-          </h1>
-
-          <div class="text-sm text-white/60 flex items-center gap-2">
-            {pubDate && <DateComponent date={pubDate} />}
-            {
-              updatedDate && (
-                <span class="italic text-xs text-white/40">
-                  (آخرین ویرایش: <DateComponent date={updatedDate} />)
-                </span>
-              )
-            }
-          </div>
-
-          {
-            description && (
-              <p class="text-lg text-white/80 mt-4 italic">
-                {description}
-              </p>
-            )
-          }
-        </div>
-
-        <!-- محتوای اصلی پست (Markdown) -->
-        <div class="leading-relaxed space-y-6">
-          <slot />
-        </div>
-      </article>
-    </main>
-
-    <Footer />
-  </body>
-</html>
+  <div class="p-6 tracking-wider">
+    <!-- تنها تغییر: اضافه شدن baseUrl به آدرس لینک -->
+    <a href={`${baseUrl}/blog/${cleanSlug}`} class="block group">
+      <h2 class="text-xl font-medium text-white mb-2">
+        <span class="ba text-white/70 mr-2">❯</span>
+        {title}
+      </h2>
+      <p class="text-white font-medium tracking-widest text-sm mb-4">
+        [{
+          date.toLocaleDateString("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        }]
+      </p>
+      <p class="text-white/80 text-sm font-thin mb-4 line-clamp-1">{excerpt}</p>
+      <p
+        class="text-white absolute bottom-4 font-medium inline-flex items-center group-hover:underline-offset-4 underline-offset-8 underline transition-all ease-in-out"
+      >
+        Read more
+        <svg
+          class="w-4 h-4 ml-2 transform group-hover:-translate-x-1 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-jine-join="round"
+            stroke-width={2}
+            d="M9 5l7 7-7 7"></path>
+        </svg>
+      </p>
+    </a>
+  </div>
+</div>
