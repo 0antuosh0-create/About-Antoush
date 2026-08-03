@@ -17,23 +17,24 @@ const quotes = [
 ];
 ---
 
-<div class="h-28 overflow-hidden select-none">
-  <div class="hero-bg">
+<!-- بخش باینری فوقانی فوتر - غیرفعال کردن pointer-events برای عدم تداخل در اسکرول -->
+<div class="h-16 md:h-24 overflow-hidden select-none pointer-events-none opacity-40">
+  <div class="hero-bg text-xs md:text-sm">
     1000001100000000101001011011110000000101000011000100111110110100101101101101011000111110111010010000010010101100011001111110010110011010000011001110001100111010010010010011000001001100001111100010100101001010101000000011101000010000000000011101101001010100110111110100001100010100001100010100010110001110001011000001011110010100101011101100001010011100100010000001010000100011111011010110000001010010100000110011000010100001110111101010110010111100111100011001000011011001110000000000101110110001101111101110011011100010111011010001000100101101101100110111010011010110010000101010010000100100110101101110101011011001000111100111001011101000101101001001001011011000011111001001100101110100000111000100010010100001111101100001001110011011111001111101001110000000010000100101101101011011111000011100000010110111001110000110110100110100110011101100000101011101001010111001000000101000010111110101100110000110110001101000101100001110000110110011001010001011011000110100000101111101000011110110100010011110
   </div>
 </div>
 
 <section
   id="footer"
-  class="w-full grid relative place-items-center text-center py-4 bg-white/[0.001]"
+  class="w-full grid relative place-items-center text-center py-6 px-4 bg-white/[0.001]"
 >
   <div
     id="footer-card"
-    class="px-10 py-3 border-2 border-white font-pixel cursor-pointer select-none transition-all duration-300 hover:border-zinc-400 hover:scale-105"
+    class="px-5 md:px-8 py-3 border border-white/80 md:border-2 font-pixel cursor-pointer select-none transition-all duration-300 hover:border-white active:scale-95 hover:scale-105 max-w-[90vw] md:max-w-xl min-h-[52px] flex items-center justify-center"
   >
     <span 
       id="footer-text" 
-      class="inline-block transition-all duration-200 opacity-100"
+      class="inline-block transition-all duration-200 opacity-100 text-xs sm:text-sm md:text-base leading-relaxed"
       dir="auto"
       style="unicode-bidi: plaintext;"
     >
@@ -50,7 +51,6 @@ const quotes = [
 
     if (!scriptTag || !card || !textEl) return;
 
-    // جلوگیری از ثبت چندباره Event Listener موقع رفتن به صفحات دیگر
     if (card.dataset.hasListener === "true") return;
     card.dataset.hasListener = "true";
 
@@ -58,20 +58,18 @@ const quotes = [
     let currentIndex = 0;
     let isAnimating = false;
 
-    card.addEventListener("mouseenter", () => {
+    // تابع تعویض متن با انیمیشن
+    function changeQuote() {
       if (isAnimating || quotes.length <= 1) return;
       isAnimating = true;
 
-      // ۱. انیمیشن محو شدن
       textEl.classList.remove("opacity-100", "translate-y-0");
       textEl.classList.add("opacity-0", "translate-y-2");
 
       setTimeout(() => {
-        // ۲. تعویض جمله
         currentIndex = (currentIndex + 1) % quotes.length;
         textEl.textContent = quotes[currentIndex];
 
-        // ۳. انیمیشن ظاهر شدن
         textEl.classList.remove("opacity-0", "translate-y-2");
         textEl.classList.add("opacity-100", "translate-y-0");
 
@@ -79,10 +77,13 @@ const quotes = [
           isAnimating = false;
         }, 200);
       }, 200);
-    });
+    }
+
+    // پشتیبانی همزمان از Hover در دسکتاپ و Click/Touch در گوشی
+    card.addEventListener("mouseenter", changeQuote);
+    card.addEventListener("click", changeQuote);
   }
 
-  // اجرای انیمیشن در اولین بارگذاری و تمام جابه‌جایی‌های صفحات در Astro
   document.addEventListener("DOMContentLoaded", setupFooterAnimation);
   document.addEventListener("astro:page-load", setupFooterAnimation);
 </script>
