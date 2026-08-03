@@ -1,25 +1,31 @@
 @font-face {
   font-family: 'SorenaPixel';
-  src: url('/fonts/Sorena-Pixel.woff2') format('woff2');
+  src: url('/About-Antoush/fonts/Sorena-Pixel.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "VCR";
-  src: url("/fonts/VCRosdNEUE.ttf") format("truetype");
+  font-family: 'VCRosdNEUE';
+  src: url('/About-Antoush/fonts/VCRosdNEUE.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
+
 body {
-  font-family: "VCR", monospace !important;
+  font-family: "VCRosdNEUE", "VCR", monospace !important;
 }
 
 pre,
 code {
-  font-family: "VCR", monospace !important;
+  font-family: "VCRosdNEUE", "VCR", monospace !important;
   font-weight: 100;
+}
+
+.font-pixel {
+  font-family: 'SorenaPixel', sans-serif !important;
 }
 
 ::selection {

@@ -1,9 +1,10 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
+import { ABOUT_ME, SITE_TITLE } from "@/consts";
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   image?: string;
 }
@@ -15,31 +16,20 @@ const {
   description = ABOUT_ME,
   image = "/image.jpg",
 } = Astro.props;
-import HeroImage from "@/hero.png";
-import { ABOUT_ME, SITE_TITLE } from "@/consts";
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/favicon.png`} />
 <meta name="generator" content={Astro.generator} />
-<link rel="sitemap" href="/sitemap-index.xml" />
-
-<!-- Font preloads -->
-<link
-  rel="preload"
-  href="/fonts/VCRosdNEUE.ttf"
-  as="font"
-  type="font/ttf"
-  crossorigin
-/>
+<link rel="sitemap" href={`${import.meta.env.BASE_URL}/sitemap-index.xml`} />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
-<title>The Ashen One</title>
+<title>{title || "The Ashen One"}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 
@@ -57,5 +47,5 @@ import { ABOUT_ME, SITE_TITLE } from "@/consts";
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<!-- View Transitions  -->
+<!-- View Transitions -->
 <ClientRouter />
