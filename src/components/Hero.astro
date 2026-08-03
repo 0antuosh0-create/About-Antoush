@@ -6,28 +6,28 @@ import { QUOTE, SITE_TITLE } from "@/consts";
 
 <div class="hero-bg hidden md:block h-screen hero-bg-animate absolute top-0"></div>
 <section
-  class="min-h-screen md:h-screen !z-[20] relative w-full flex flex-col justify-center sm:grid sm:grid-cols-2 gap-6 items-center px-4 sm:px-8 pt-16 pb-8 md:py-0 overflow-x-hidden"
+  class="min-h-screen md:h-screen !z-[20] relative w-full flex flex-col justify-start sm:justify-center sm:grid sm:grid-cols-2 gap-4 sm:gap-6 items-center px-4 sm:px-8 pt-4 sm:pt-16 pb-8 md:py-0 overflow-x-hidden"
   id="hero"
 >
-  <div class="grid place-items-center w-full">
+  <div class="grid place-items-center w-full mt-2 sm:mt-0">
     <div class="text-center md:-mt-10 max-w-full">
-      <!-- تیتر با فونت متناسب و خوانا -->
+      <!-- تیتر با فاصله خیلی کمتر از بالا -->
       <h1 class="font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight break-words">
         {`<${SITE_TITLE} />`}
       </h1>
-      <!-- نقل قول با استایل حماسی و فاصله عبارات -->
-      <h2 class="text-sm sm:text-xl md:text-2xl text-white/80 mt-3 leading-relaxed font-light tracking-wide px-2">
+      <!-- نقل قول -->
+      <h2 class="text-sm sm:text-xl md:text-2xl text-white/80 mt-2 sm:mt-3 leading-relaxed font-light tracking-wide px-2">
         {QUOTE}
       </h2>
     </div>
   </div>
 
   <div class="flex justify-center items-center w-full mt-2 sm:mt-0">
-    <!-- عکس جدی، بزرگ‌تر و دارای سایه درخشان -->
+    <!-- آرت گرافیکی بسیار بزرگ‌تر و حماسی‌تر روی موبایل -->
     <Image
       alt="Hero"
       src={HeroImg}
-      class="brightness-200 w-[85%] max-w-[340px] sm:max-w-full scale-100 md:scale-90 invert drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300"
+      class="brightness-200 w-full max-w-[420px] sm:max-w-full scale-105 sm:scale-100 md:scale-90 invert drop-shadow-[0_0_25px_rgba(255,255,255,0.25)] transition-all duration-300"
     />
   </div>
 </section>
