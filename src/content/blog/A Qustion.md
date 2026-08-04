@@ -1,7 +1,7 @@
 ---
 title: "A Qustion?"
 description: "I jUst DON'T KONW "
-pubDate: "2026-08-03"
+pubDate: "2026-08-04"
 heroImage: "/About-Antoush/cat2.png"
 ---
 <div class="max-w-2xl mx-auto">
