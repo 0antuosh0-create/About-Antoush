@@ -4,6 +4,8 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  /* محدوده کاراکترهای فارسی و عربی برای تشخیص هوشمند مرورگر */
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFE;
 }
 
 @font-face {
@@ -14,18 +16,19 @@
   font-display: swap;
 }
 
+/* اولویت اول برای فارسی SorenaPixel و برای انگلیسی VCRosdNEUE */
 body {
-  font-family: "VCRosdNEUE", "VCR", monospace !important;
+  font-family: 'SorenaPixel', 'VCRosdNEUE', 'VCR', monospace !important;
 }
 
 pre,
 code {
-  font-family: "VCRosdNEUE", "VCR", monospace !important;
+  font-family: 'SorenaPixel', 'VCRosdNEUE', 'VCR', monospace !important;
   font-weight: 100;
 }
 
 .font-pixel {
-  font-family: 'SorenaPixel', sans-serif !important;
+  font-family: 'SorenaPixel', 'VCRosdNEUE', sans-serif !important;
 }
 
 ::selection {
@@ -61,4 +64,11 @@ img,
   opacity: 0.02;
   font-size: 3rem;
   user-select: none;
+}
+
+h1:where([dir="auto"]),
+h2:where([dir="auto"]),
+h3:where([dir="auto"]) {
+  text-align: right;
+  unicode-bidi: plaintext;
 }

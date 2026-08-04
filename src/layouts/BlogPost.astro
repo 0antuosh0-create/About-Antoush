@@ -20,7 +20,7 @@ const { title, pubDate, updatedDate, heroImage } = Astro.props;
     <div
       class="prose !max-w-[90vw] overflow-x-hidden !break-words brightness-110 prose-img:scale-90 prose-img:rounded-2xl prose-invert prose-hr:border-white prose-hr:bg-white px-4 md:px-0 md:max-w-4xl"
     >
-      <div>
+      <div dir="auto">
         <div>
           <FormattedDate date={pubDate} />
           {
@@ -31,7 +31,8 @@ const { title, pubDate, updatedDate, heroImage } = Astro.props;
             )
           }
         </div>
-        <h1>{title}</h1>
+        <!-- تایتل راست‌چین و راست‌نویس مخصوص داخل صفحه پست -->
+        <h1 class="text-right" dir="rtl">{title}</h1>
         <hr />
       </div>
       <slot />
