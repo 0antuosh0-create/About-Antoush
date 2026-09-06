@@ -27,3 +27,14 @@ export const NAV_LINKS: Array<{ title: string; href?: string }> = [
     href: "https://github.com/0antuosh0-create/About-Antoush", // ✅ اضافه شدن کامل https://
   },
 ];
+
+// تنظیمات بخش پیام ناشناس
+export const ANONYMOUS_MESSAGE_CONFIG = {
+  // ایمیل خود را اینجا وارد کنید (پیام‌ها مستقیماً به این ایمیل فوروارد می‌شوند)
+  recipientEmail: "0antuosh0@gmail.com",
+  title: "Whisper",
+  subtitle: "حرفی، نظری، نقدی یا سخنی ناگفته؟ ناشناس برایم بنویس...",
+  placeholder: "هر چی دلت می‌خواد اینجا بنویس، هویتت کاملاً ناشناس باقی می‌مونه...",
+  successMessage: "Praise the Sun! پیامت با موفقیت در تاریکی رها شد ☀️",
+  maxChars: 600,
+};

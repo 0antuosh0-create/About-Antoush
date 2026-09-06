@@ -4,8 +4,9 @@ import Hero from "@/components/Hero.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import Section from "@/components/Section.astro";
 import BlogPostCard from "@/components/BlogPostCard.astro";
+import AnonymousMessage from "@/components/AnonymousMessage.astro";
 import Layout from "@/layouts/Layout.astro";
-import { KNOWN_TECH, ABOUT_ME } from "@/consts";
+import { KNOWN_TECH, ABOUT_ME, ANONYMOUS_MESSAGE_CONFIG } from "@/consts";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -48,5 +49,8 @@ const posts = (await getCollection("blog")).sort(
         <p>{ABOUT_ME}</p>
       </div>
     </div>
+  </Section>
+  <Section title={ANONYMOUS_MESSAGE_CONFIG.title} full_screen={false}>
+    <AnonymousMessage />
   </Section>
 </Layout>
