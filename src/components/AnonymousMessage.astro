@@ -23,7 +23,7 @@ const {
         <div class="w-3 h-3 rounded-full bg-black"></div>
       </div>
       <div class="font-pixel text-[11px] tracking-widest opacity-80 uppercase select-none">
-        whisper_terminal.exe
+        whisper.exe
       </div>
     </div>
 
@@ -32,7 +32,6 @@ const {
       <p
         class="text-white/80 font-pixel text-sm md:text-base text-center mb-5 leading-relaxed select-none"
         dir="auto"
-        style="unicode-bidi: plaintext;"
       >
         {subtitle}
       </p>
@@ -51,17 +50,18 @@ const {
         <div>
           <label
             for="sender-alias"
-            class="block text-xs md:text-sm text-white/60 mb-1.5 font-pixel text-right"
+            class="block text-xs md:text-sm text-white/60 mb-1.5 font-pixel"
+            dir="auto"
           >
-            لقب یا نشانه (اختیاری):
+            Who are you?
           </label>
           <input
             type="text"
             id="sender-alias"
             name="alias"
             maxlength="60"
-            placeholder="مثلاً: مسافر بی‌نام، یک دوست، ..."
-            class="w-full bg-black/60 border border-white/30 focus:border-white focus:ring-1 focus:ring-white/40 text-white rounded px-3 py-2 text-xs md:text-sm font-pixel outline-none transition-all placeholder:text-white/20 text-right"
+            placeholder="A nameless Knight?"
+            class="w-full bg-black/60 border border-white/30 focus:border-white focus:ring-1 focus:ring-white/40 text-white rounded px-3 py-2 text-xs md:text-sm font-pixel outline-none transition-all placeholder:text-white/20"
             dir="auto"
           />
         </div>
@@ -70,9 +70,10 @@ const {
         <div>
           <label
             for="message-content"
-            class="block text-xs md:text-sm text-white/60 mb-1.5 font-pixel text-right"
+            class="block text-xs md:text-sm text-white/60 mb-1.5 font-pixel"
+            dir="auto"
           >
-            متن پیام (ناشناس):
+            What is your story?:
           </label>
           <textarea
             id="message-content"
@@ -81,14 +82,14 @@ const {
             required
             maxlength={maxChars}
             placeholder={placeholder}
-            class="w-full bg-black/60 border border-white/30 focus:border-white focus:ring-1 focus:ring-white/40 text-white rounded p-3 text-xs md:text-sm font-pixel outline-none transition-all resize-y placeholder:text-white/20 leading-relaxed text-right"
+            class="w-full bg-black/60 border border-white/30 focus:border-white focus:ring-1 focus:ring-white/40 text-white rounded p-3 text-xs md:text-sm font-pixel outline-none transition-all resize-y placeholder:text-white/20 leading-relaxed"
             dir="auto"
           ></textarea>
 
           <!-- شمارنده کاراکترها و نشان امنیت -->
           <div class="flex justify-between items-center text-[11px] text-white/40 font-pixel mt-1 px-1">
             <span class="flex items-center gap-1 text-white/50 select-none">
-              🔒 ۱۰۰٪ بدون نیاز به لاگین و ناشناس
+              Completely anonymous
             </span>
             <span id="char-counter">۰ / {maxChars}</span>
           </div>
@@ -107,7 +108,7 @@ const {
             id="submit-button"
             class="px-8 py-2.5 border-2 border-white font-pixel text-xs md:text-sm cursor-pointer select-none transition-all duration-300 hover:bg-white hover:text-black active:scale-95 flex items-center justify-center gap-2 bg-transparent text-white"
           >
-            <span id="btn-text">ارسال به تاریکی ❯</span>
+            <span id="btn-text">Send to Abyss</span>
             <span id="btn-spinner" class="hidden animate-spin">✦</span>
           </button>
         </div>
@@ -122,19 +123,18 @@ const {
         <p
           class="text-white font-pixel text-sm md:text-base max-w-md leading-relaxed"
           dir="auto"
-          style="unicode-bidi: plaintext;"
         >
           {successMessage}
         </p>
         <p class="text-xs text-white/50 font-pixel">
-          پیام به صندوق خصوصی من فرستاده شد.
+         The message is in the Abyss now.
         </p>
         <button
           type="button"
           id="send-another-btn"
           class="mt-3 px-5 py-1.5 border border-white/60 text-xs font-pixel hover:bg-white hover:text-black transition-all cursor-pointer"
         >
-          ارسال پیامی دیگر
+          Send another one?
         </button>
       </div>
     </div>
@@ -155,14 +155,12 @@ const {
 
     if (!form || !textarea) return;
 
-    // جلوگیری از ثبت چندباره لیسنر در صورت جا‌به‌جایی در صفحات
     if (form.dataset.hasListener === "true") return;
     form.dataset.hasListener = "true";
 
     const maxChars = parseInt(form.dataset.maxChars || "600", 10);
     const recipient = form.dataset.recipient || "0antuosh0@gmail.com";
 
-    // شمارشگر کاراکتر
     const updateCharCount = () => {
       const len = textarea.value.length;
       if (charCounter) {
@@ -173,7 +171,6 @@ const {
     textarea.addEventListener("input", updateCharCount);
     updateCharCount();
 
-    // مدیریت ارسال فرم با AJAX
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -182,7 +179,6 @@ const {
       const alias = aliasInput ? aliasInput.value.trim() : "";
       const gotcha = form.querySelector('input[name="_gotcha"]');
 
-      // محافظت در برابر ربات‌ها
       if (gotcha && gotcha.value) {
         return;
       }
@@ -192,7 +188,6 @@ const {
         return;
       }
 
-      // وضعیت در حال ارسال
       setLoading(true);
       hideError();
 
@@ -231,7 +226,6 @@ const {
       }
     });
 
-    // دکمه ارسال پیام دیگر
     if (sendAnotherBtn) {
       sendAnotherBtn.addEventListener("click", () => {
         successPanel.classList.remove("flex");
@@ -248,7 +242,7 @@ const {
       if (!submitBtn) return;
       submitBtn.disabled = isLoading;
       if (isLoading) {
-        btnText.textContent = "در حال رها کردن پیام...";
+        btnText.textContent ="The message is losing itself";
         btnSpinner.classList.remove("hidden");
         submitBtn.classList.add("opacity-70", "cursor-not-allowed");
       } else {

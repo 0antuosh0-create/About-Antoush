@@ -33,8 +33,8 @@ export const ANONYMOUS_MESSAGE_CONFIG = {
   // ایمیل خود را اینجا وارد کنید (پیام‌ها مستقیماً به این ایمیل فوروارد می‌شوند)
   recipientEmail: "0antuosh0@gmail.com",
   title: "Whisper",
-  subtitle: "حرفی، نظری، نقدی یا سخنی ناگفته؟ ناشناس برایم بنویس...",
-  placeholder: "هر چی دلت می‌خواد اینجا بنویس، هویتت کاملاً ناشناس باقی می‌مونه...",
-  successMessage: "Praise the Sun! پیامت با موفقیت در تاریکی رها شد ☀️",
+  subtitle: "Hmm, Want to say something to me? ",
+  placeholder: "Here is a place to say something if you like...",
+  successMessage: "The phantom message has been sent successfully!",
   maxChars: 600,
 };
